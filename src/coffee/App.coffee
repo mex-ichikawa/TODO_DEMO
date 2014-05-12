@@ -1,5 +1,5 @@
 #Parseイニシャライズ
-parseUtil = ParseUtil.getInstance(Config.PARSE_APPLICATION_ID, Config.PARSE_REST_API_KEY)
+parseUtil = ParseUtil.getInstance(Config.PARSE_APPLICATION_ID, Config.PARSE_JAVASCRIPT_KEY)
 # parseUtil.setFBInit(Config.FACEBOOK_APP_ID)
 
 #アプリ取得
