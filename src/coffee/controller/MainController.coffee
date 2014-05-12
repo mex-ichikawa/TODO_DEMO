@@ -1,8 +1,6 @@
 #ログインページビュー
 namespace "controller", -> class MainController
 	constructor: (@$scope, @$location) ->
-		$scope.name = "Angular.js"
-		$scope.count = 0
 		$scope.todoSubmit = @_addTodo
 		$scope.changeTodo = @_changeTodo
 		$scope.deleteTodo = @_deleteTodo
@@ -21,8 +19,8 @@ namespace "controller", -> class MainController
 	_addTodo: (e) =>
 		e.preventDefault()
 		todo = new Todo()
-		todo.set("text", @$scope.todoText)
-		todo.set("isActive", true)
+		todo.set(Todo.TEXT, @$scope.todoText)
+		todo.set(Todo.IS_ACTIVE, true)
 		todo.save().then(
 			(obj)=>
 				@$scope.$apply =>
@@ -38,7 +36,7 @@ namespace "controller", -> class MainController
 	_changeTodo: (e) =>
 		item = @_getModelById(e.target.value)
 		if item
-			item.set("isActive", !item.get("isActive"))
+			item.set(Todo.IS_ACTIVE, !item.get(Todo.IS_ACTIVE))
 			item.save().then(
 				(obj)=>
 					@_getTodos()
@@ -65,7 +63,7 @@ namespace "controller", -> class MainController
 	#リスト取得
 	_getTodos: =>
 		query = new Parse.Query(Todo)
-		query.descending("updatedAt")
+		query.descending(Todo.UPDATED_AT)
 		query.find().then(
 			(results)=>
 				arr = []
@@ -73,8 +71,8 @@ namespace "controller", -> class MainController
 				for result in results
 					arr.push {
 						id: result.id
-						text: result.get("text")
-						isActive: result.get("isActive")
+						text: result.get(Todo.TEXT)
+						isActive: result.get(Todo.IS_ACTIVE)
 					}
 				@$scope.$apply =>
 					@$scope.todoList = arr
