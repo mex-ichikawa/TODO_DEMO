@@ -12,6 +12,9 @@ Icon
 .sass-cache
 node_modules
 .gitignore.swp
+src/css
+src/js
+src/coffee/build
 
 # Thumbnails
 ._*
@@ -31,4 +34,3 @@ Temporary Items
 ### Bower ###
 bower_components
 vendor
-
