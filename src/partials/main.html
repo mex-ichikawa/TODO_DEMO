@@ -1,6 +1,18 @@
 <article>
-	<h1>Hello! {{name}} - {{count}}</h1>
-	<p><input type="text" ng-model="name" value="{{name}}" /></p>
-	<p><input type="text" ng-model="count" value="{{count}}" readonly="readonly" /></p>
-	<p><button class="btn btn-primary" ng-click="countUp()">Count Up!</button></p>
+	<h1>TODO DEMO</h1>
+	<form ng-submit="todoSubmit($event)" class="form-inline">
+		<input type="text" class="form-control" ng-model="todoText" placeholder="やること" required="required" />
+		<button class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+	</form>
+	<hr />
+	<ul class="nav nav-list">
+		<li ng-repeat="todo in todoList | filter: { isActive: true }"><label><input type="checkbox" ng-click="changeTodo($event)" value="{{todo.id}}" /> {{todo.text}}</label></li>
+	</ul>
+	<hr />
+	<ul class="nav nav-list">
+		<li ng-repeat="todo in todoList | filter: { isActive: false }">
+			<label><input type="checkbox" ng-click="changeTodo($event)" value="{{todo.id}}" checked="checked" /> <s>{{todo.text}}</s></label>
+			<input type="button" class="btn btn-danger btn-xs" ng-click="deleteTodo($event, todo.id)" value="削除" />
+		</li>
+	</ul>
 </article>
